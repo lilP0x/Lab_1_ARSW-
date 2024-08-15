@@ -12,7 +12,18 @@ package edu.eci.arsw.threads;
 public class CountThreadsMain {
     
     public static void main(String a[]){
-        
+        int [] arreglo = {0,99};
+        int [] arreglo2 = {99,199};
+        int [] arreglo3 = {200,299};
+
+        CountThread intervalo1 = new CountThread(arreglo);
+        CountThread intervalo2 = new CountThread(arreglo2);
+        CountThread intervalo3 = new CountThread(arreglo3);
+
+        intervalo1.start();
+        intervalo2.start();
+        intervalo3.start();
+       
     }
     
 }
