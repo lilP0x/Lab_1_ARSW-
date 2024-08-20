@@ -6,6 +6,8 @@
 package edu.eci.arsw.blacklistvalidator;
 
 import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,7 +20,8 @@ import java.util.logging.Logger;
 public class HostBlackListsValidator {
 
     private static final int BLACK_LIST_ALARM_COUNT=5;
-    
+    private int checkedListsCount=0;
+
     /**
      * Check the given host's IP address in all the available black lists,
      * and report it as NOT Trustworthy when such IP was reported in at least
@@ -33,22 +36,36 @@ public class HostBlackListsValidator {
         
         LinkedList<Integer> blackListOcurrences=new LinkedList<>();
         
-        int ocurrencesCount=0;
-        
         HostBlacklistsDataSourceFacade skds=HostBlacklistsDataSourceFacade.getInstance();
+
+
+        ArrayList<Thread_BlackList> hilos = new ArrayList<>();
         
-        int checkedListsCount=0;
-        
-        for (int i=0;i<skds.getRegisteredServersCount() && ocurrencesCount<BLACK_LIST_ALARM_COUNT;i++){
-            checkedListsCount++;
-            
-            if (skds.isInBlackListServer(i, ipaddress)){
-                
-                blackListOcurrences.add(i);
-                
-                ocurrencesCount++;
+        int ocurrencesCount=0;
+
+        int x = 0 ; 
+        int range = 11 / N ; 
+        int y= range;
+
+        for (int i=0; i<N;i++){
+           
+            Thread_BlackList hilo = new Thread_BlackList(x, y, ipaddress);
+            hilo.start();
+            hilos.add(hilo);
+            try {
+                hilo.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+            y *= 2;
+            x = y/2 +1;
         }
+
+        for(Thread_BlackList h : hilos){
+            h.coincidenceCount();
+        }
+
         
         if (ocurrencesCount>=BLACK_LIST_ALARM_COUNT){
             skds.reportAsNotTrustworthy(ipaddress);
