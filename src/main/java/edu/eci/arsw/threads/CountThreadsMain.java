@@ -22,8 +22,7 @@ public class CountThreadsMain {
 
         intervalo1.start();
         intervalo2.start();
-        intervalo3.start();
-       
+        intervalo3.start();       
     }
     
 }
