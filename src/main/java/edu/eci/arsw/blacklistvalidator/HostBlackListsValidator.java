@@ -44,7 +44,7 @@ public class HostBlackListsValidator {
         int ocurrencesCount=0;
 
         int x = 0 ; 
-        int range = 11 / N ; 
+        int range = 80000 / N ; 
         int y= range;
 
         for (int i=0; i<N;i++){
@@ -57,13 +57,16 @@ public class HostBlackListsValidator {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("Inicio"+ x +""+ y );
             y *= 2;
             x = y/2 +1;
+            System.out.println("Final"+ x +""+ y );
         }
 
         for(Thread_BlackList h : hilos){
-            h.coincidenceCount();
+            ocurrencesCount += h.coincidenceCount();
+            checkedListsCount += h.getCheckedListsCount();
+            blackListOcurrences.addAll(h.getBlackList());
         }
 
         
