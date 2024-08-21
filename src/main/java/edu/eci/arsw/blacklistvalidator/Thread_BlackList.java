@@ -18,7 +18,7 @@ public class Thread_BlackList extends Thread {
     private int inicio;
     private int fin;
     
-    HostBlacklistsDataSourceFacade skds=HostBlacklistsDataSourceFacade.getInstance();
+    HostBlacklistsDataSourceFacade skds = HostBlacklistsDataSourceFacade.getInstance();
 
     public Thread_BlackList(int inicio, int fin, String ip){
         this.ip = ip;
@@ -29,9 +29,6 @@ public class Thread_BlackList extends Thread {
 
     @Override
     public void run(){
-        
-
-
         for (int i=inicio;i<fin && ocurrencesCount<BLACK_LIST_ALARM_COUNT;i++){
             checkedListsCount++;
             
