@@ -16,17 +16,17 @@
 **Parte I - Introducción a Hilos en Java**
 
 1. De acuerdo con lo revisado en las lecturas, complete las clases CountThread, para que las mismas definan el ciclo de vida de un hilo que imprima por pantalla los números entre A y B.
-![](img/Imagen2.png)
+![](img/Imagen2.jpeg)
 2. Complete el método __main__ de la clase CountMainThreads para que:
 	1. Cree 3 hilos de tipo CountThread, asignándole al primero el intervalo [0..99], al segundo [99..199], y al tercero [200..299].
 	2. Inicie los tres hilos con 'start()'.
-	![](img/Imagen1.png)
+	![](img/Imagen1.jpeg)
 	3. Ejecute y revise la salida por pantalla. 
-	![](img/Imagen3.png)
+	![](img/Imagen3.jpeg)
 	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
-	![](img/Imagen4.png)
+	![](img/Imagen4.jpeg)
 	Va cambiar la salida ya que cuando ocurre el start lo hace de forma paralela, está ejercutando varios procesos al tiempo, mientras que correrlo con el run(), se ejecuta proceso por proceso, esto hace que los números se impriman de forma ordenada
-	![](img/Imagen5.png)
+	![](img/Imagen5.jpeg)
 
 **Parte II - Ejercicio Black List Search**
 
@@ -56,7 +56,7 @@ Para 'refactorizar' este código, y hacer que explote la capacidad multi-núcleo
 
 1. Cree una clase de tipo Thread que represente el ciclo de vida de un hilo que haga la búsqueda de un segmento del conjunto de servidores disponibles. Agregue a dicha clase un método que permita 'preguntarle' a las instancias del mismo (los hilos) cuantas ocurrencias de servidores maliciosos ha encontrado o encontró.
 
-![](img/Imagen6.png)
+![](img/Imagen6.jpeg)
 
 2. Agregue al método 'checkHost' un parámetro entero N, correspondiente al número de hilos entre los que se va a realizar la búsqueda (recuerde tener en cuenta si N es par o impar!). Modifique el código de este método para que divida el espacio de búsqueda entre las N partes indicadas, y paralelice la búsqueda a través de N hilos. Haga que dicha función espere hasta que los N hilos terminen de resolver su respectivo sub-problema, agregue las ocurrencias encontradas por cada hilo a la lista que retorna el método, y entonces calcule (sumando el total de ocurrencuas encontradas por cada hilo) si el número de ocurrencias es mayor o igual a _BLACK_LIST_ALARM_COUNT_. Si se da este caso, al final se DEBE reportar el host como confiable o no confiable, y mostrar el listado con los números de las listas negras respectivas. Para lograr este comportamiento de 'espera' revise el método [join](https://docs.oracle.com/javase/tutorial/essential/concurrency/join.html) del API de concurrencia de Java. Tenga también en cuenta:
 
@@ -64,8 +64,8 @@ Para 'refactorizar' este código, y hacer que explote la capacidad multi-núcleo
 
 	* Se sabe que el HOST 202.24.34.55 está reportado en listas negras de una forma más dispersa, y que el host 212.24.24.55 NO está en ninguna lista negra.
 
-![](img/Imagen7.png)
-![](img/Imagen8.png)
+![](img/Imagen7.jpeg)
+![](img/Imagen8.jpeg)
 
 **Parte II.I Para discutir la próxima clase (NO para implementar aún)**
 
@@ -83,26 +83,26 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 
 1. Un solo hilo.
 
-![](img/1hilo.png)
-![](img/1hiloJV.png)
+![](img/1hilo.jpeg)
+![](img/1hiloJV.jpeg)
 
 2. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del [API Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)).
 
-![](img/2hilo.png)
-![](img/2hiloJV.png)
+![](img/2hilo.jpeg)
+![](img/2hiloJV.jpeg)
 
 3. Tantos hilos como el doble de núcleos de procesamiento.
 
-![](img/5hilo.png)
-![](img/5hiloJV.png)
+![](img/5hilo.jpeg)
+![](img/5hiloJV.jpeg)
 
 4. 50 hilos.
-![](img/3hilo.png)
-![](img/3hiloJV.png)
+![](img/3hilo.jpeg)
+![](img/3hiloJV.jpeg)
 
 5. 100 hilos.
-![](img/4hilo.png)
-![](img/4hiloJV.png)
+![](img/4hilo.jpeg)
+![](img/4hiloJV.pjpeg)
 
 Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso. ![](img/jvisualvm.png)
 
@@ -114,7 +114,7 @@ b. Disminución del rendimiento a partir de cierto punto: Un exceso de hilos pue
 c. Mayor consumo de memoria: Al aumentar el número de hilos, se espera un mayor consumo de memoria debido a las estructuras de datos y las pilas de cada hilo.
 
 La gráfica se veria así: 
-![](img/Incremento.png)
+![](img/Incremento.jpeg)
 
 De pendiendo de cada hilo va tener un aumento progresivo según los hilos que tengan va ocupar más memoria 100 hilos a 1 solo hilo únicamente
 
